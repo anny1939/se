@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+class node{
+  public:
+  int data;
+  node* left;
+  node* right;
+
+  node(int d){
+    this -> data = d;
+    this -> left = NULL;
+    this -> right = NULL;
+  }
+};
+
+node* insertNode(node* root,int data){
+  //base case
+  if (root == NULL){
+    root = new node(data);
+    return root;
+  }
+  if (data > root -> data){
+    //insert at right of the node
+    root -> right = insertNode(root -> right ,data);
+  }
+  else{
+    //insert at left of the node
+    root -> left = insertNode(root -> left ,data);
+  }
+
+  return root;
+  
+}
+
+void takeinput(node* &root){
+  int data;
+  cin >> data;
+
+  while(data != -1){
+    
+    root = insertNode(root,data);
+    cin >> data;
+  }
+
+} 
+
+void inorderT(node* &root){
+
+  if (root == NULL){
+    return;
+    
+  }
+
+  inorderT(root->left);
+  cout<<root->data<<" ";
+  inorderT(root->right);
+}
+
+int main() {
+  node* root = NULL;
+
+  cout<<"Enter data to construct BST"<<endl;
+  takeinput(root);
+  cout<<"inorder traversal is: ";
+  inorderT(root);
+
+}

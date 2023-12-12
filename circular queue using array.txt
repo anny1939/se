@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+class cqueue
+{
+  public:
+  int *arr;
+  int size;
+  int front;
+  int rear;
+
+  cqueue(int size){
+    this -> size = size;
+    arr = new int[size];
+    front = -1;
+    rear=-1;
+    }
+  void enqueue(int value){
+    //check if queue is full
+    if ((front == 0 && rear == size-1)||(rear+1)%size == front){
+      cout<<"queue is full"<<endl;
+    }
+    //first element to push
+    else if(front == -1){
+      front = 0;
+      rear = 0;
+      arr[rear] = value;
+    }
+    //if rear is at the end position i.e at size-1 position (before pushing of element) and the first block of queue is empty then point the first block as rear (circular nature of queue)
+    else if(rear == size-1 && front != 0){
+      rear = 0;
+      arr[rear] = value;
+    }
+    //
+    else{
+      rear++;
+      arr[rear] = value;
+    }
+  }
+  void dequeue(){
+    //check if the queue is empty 
+    if(front == -1){
+      cout<<"queue is empty"<<endl;
+    }
+    //dequeue the element
+    else{
+      cout<<"dequeued element is: "<<arr[front]<<endl;
+      //if the only one element was left and it is dequeued(poped out)
+      if(front == rear){
+        front = -1;
+        rear = -1;
+      }
+      else{
+        front = (front + 1)%size;
+      }
+    }    
+
+  };  
+  
+
+
+int main() {
+
+  cqueue st(5);
+
+  st.enqueue(15);
+  st.enqueue(15);
+  st.enqueue(15);
+
+ 
+  
+  
+  
+  
+}

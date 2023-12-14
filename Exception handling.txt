@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class ExceptionHandlingExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // Getting user input for Num1
+            System.out.print("Enter Num1: ");
+            int num1 = Integer.parseInt(scanner.nextLine());
+
+            // Getting user input for Num2
+            System.out.print("Enter Num2: ");
+            int num2 = Integer.parseInt(scanner.nextLine());
+
+            // Division operation
+            int result = num1 / num2;
+            System.out.println("Result of Num1 / Num2: " + result);
+
+            // ArrayIndexOutOfBoundsException example
+            int[] array = {1, 2, 3};
+            System.out.println("Array element at index 5: " + array[5]);
+
+        } catch (NumberFormatException e) {
+            System.out.println("NumberFormatException: " + e.getMessage());
+
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException: " + e.getMessage());
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
+
+        } finally {
+            scanner.close(); // Close the scanner in the finally block to ensure it's closed regardless of exceptions.
+        }
+    }
+}
